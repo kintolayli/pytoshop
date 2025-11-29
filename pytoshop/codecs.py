@@ -460,6 +460,11 @@ def compress_image(fd,            # type: BinaryIO
         The version of the PSD file. See `enums.Version`.
     """
     if isinstance(image, int):
+        # --- FIX START: Обработка -1 для uint8 ---
+        if depth == 8 and image < 0:
+            # Превращаем -1 в 255 (unsigned byte)
+            image = image & 0xFF
+        # --- FIX END ---
         image = np.dtype(color_depth_dtype_map[depth]).type(image)
 
     dtype = image.dtype

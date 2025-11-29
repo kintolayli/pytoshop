@@ -24,14 +24,9 @@ test_requirements = [
 try:
     from Cython.Build import cythonize
 except ImportError:
-    extensions = []
+    pass
 else:
-    extensions = cythonize([
-        Extension(
-            "pytoshop.packbits",
-            ["pytoshop/packbits.pyx"]
-        )
-    ])
+    pass
 
 
 setup(
@@ -64,6 +59,5 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
-    tests_require=test_requirements,
-    ext_modules=extensions
+    tests_require=test_requirements
 )
